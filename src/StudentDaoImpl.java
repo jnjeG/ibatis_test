@@ -83,6 +83,34 @@ public class StudentDaoImpl implements StudentDao {
     }
     return students;
   }
+  @SuppressWarnings("unchecked")
+	public List<Student> testQueryForListMethod(String name){
+		List<Student> students = null;
+		try{
+			students = sqlMapClient.queryForList("selectStudentByName", name, 2,9);
+			
+			/*RowHandler arg2 = new RowHandler() {
+				
+				@Override
+				public void handleRow(Object arg0) {
+					Student row = (Student)arg0;
+					row.setName("李武");
+					System.out.println(arg0);
+				}
+			};
+			sqlMapClient.queryWithRowHandler("selectStudentByName", name, arg2);*/
+			
+			/*students = (List<Student> )sqlMapClient.queryForList("selectStudentByName", 2, 9);*/
+			
+		/*	Student arg2 = new Student();
+			sqlMapClient.queryForObject("selectStudentById", 9, arg2);*/
+			
+			
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return students;
+	}
 
   public Student selectStudentById(int id) {
     Student student = null;
